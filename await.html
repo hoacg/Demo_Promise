@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+</head>
+
+<body>
+
+<script>
+
+    (async () => {
+        async function doMyWork() {
+            let result = await $.getJSON({
+                url: "https://api.github.com/users/codegym-vn/repos"
+            });
+            return result;
+        }
+
+        try {
+            let x = await doMyWork();
+            console.log(x);
+        } catch (e) {
+            console.log("Has error", e);
+        }
+
+    })();
+
+</script>
+</body>
+</html>

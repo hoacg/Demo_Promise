@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+
+    function dadPromise(newPhone) {
+        console.log('dadPromise', newPhone);
+
+        let moneyStatus = Math.random() >= 0.5;
+
+        let promise = new Promise((resolve, reject) => {
+
+            if (moneyStatus) {
+                setTimeout(function () {
+                    resolve(newPhone);
+                }, 4000);
+            } else {
+
+                setTimeout(function () {
+                    reject( new Error("Money is out!"));
+                }, 4000);
+            }
+
+        });
+        return promise;
+
+    }
+
+
+    let phone = {
+        brand: "iPhone X",
+        color: "pink"
+    };
+
+
+    let myChild = dadPromise(phone);
+
+    document.write("I am waiting for my dad's promise !!!")
+    myChild
+        .then( newPhone => {
+            alert("Here my new phone:" + JSON.stringify(newPhone));
+        } )
+
+        .catch( reason => {
+            alert(" i am so sad! because my dad said: " +  reason);
+        });
+
+</script>
+
+
+</body>
+</html>
